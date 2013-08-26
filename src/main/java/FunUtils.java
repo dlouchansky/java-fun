@@ -57,8 +57,6 @@ public class FunUtils {
             result.get(field).add(item);
         }
 
-        List<R> ids = new ArrayList<R>();
-
         return result;
     }
 }

@@ -13,21 +13,39 @@ public class FunUtilsTest {
     @Before
     public void setUp() {
         students = new ArrayList<Student>();
-        students.add(new Student(3, "Three"));
-        students.add(new Student(2, "Two"));
-        students.add(new Student(1, "One"));
-        students.add(new Student(4, "One"));
     }
 
     @Test
-    public void testSort() {
+    public void testSortEmpty() {
         List<Student> result = FunUtils.sort(students, new Function2<Student, Boolean>() {
             public Boolean exec(Student a1, Student a2) {
                 return a1.getName().compareTo(a2.getName()) > 0;
             }
         });
 
-        assertEquals(result.get(0).getId(), new Integer(1));
+        assertEquals(result.size(), 0);
+    }
+
+    @Test
+    public void testSortOneElem() {
+        students.add(new Student(3, "Three"));
+        // todo
+    }
+
+    @Test
+    public void testSortThreeElems() {
+        students.add(new Student(3, "Three"));
+        students.add(new Student(2, "Two"));
+        students.add(new Student(1, "One"));
+        // todo
+    }
+
+    @Test
+    public void testSortThreeEqualElems() {
+        students.add(new Student(2, "One"));
+        students.add(new Student(1, "One"));
+        students.add(new Student(4, "One"));
+        // todo
     }
 
     @Test
@@ -54,13 +72,12 @@ public class FunUtilsTest {
     }
 
     @Test
-    public void testGroup() {
+    public void testGroupIf() {
         Map<String, List<Student>> result = FunUtils.group(students, new Function<Student, String>() {
             public String exec(Student a) {
                 return a.getName();
             }
         });
-
         assertEquals(result.get("One").size(), 2);
     }
 
