@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FunUtils {
+
     public static <P, R> List<R> map(List<P> list, Function<P, R> function) {
         List<R> ids = new ArrayList<R>();
         for (P item : list) {
@@ -59,6 +60,13 @@ public class FunUtils {
 
         return result;
     }
+
+    public static <P> void forEach(List<P> list, Function<P, Void> function) {
+        for (P item : list) {
+            function.exec(item);
+        }
+    }
+
 }
 
 

@@ -1,1 +1,1 @@
-Map, filter, sort, groupBy function implementation in Java.
+Map, filter, sort, group function implementation in Java.
