@@ -5,21 +5,31 @@ import java.util.Map;
 
 public class FunUtils {
 
-    public static <P, R> List<R> map(List<P> list, Function<P, R> function) {
-        List<R> ids = new ArrayList<R>();
-        for (P item : list) {
-            ids.add(function.exec(item));
-        }
+    public static <P, R> List<R> map(List<P> list, final Function<P, R> function) {
+        final List<R> ids = new ArrayList<R>();
+
+        forEach(list, new Function<P, Void>() {
+           public Void exec(P s) {
+                ids.add(function.exec(s));
+                return (null);
+           }
+        });
+
         return ids;
     }
 
-    public static <P> List<P> filter(List<P> students, Function<P, Boolean> comparator) {
-        List<P> result = new ArrayList<P>();
-        for (P student : students) {
-            if(comparator.exec(student)){
-                result.add(student);
+    public static <P> List<P> filter(List<P> list, final Function<P, Boolean> comparator) {
+        final List<P> result = new ArrayList<P>();
+
+        forEach(list, new Function<P, Void>() {
+            public Void exec(P s) {
+                if(comparator.exec(s)){
+                    result.add(s);
+                }
+                return (null);
             }
-        }
+        });
+
         return result;
     }
 
@@ -45,18 +55,21 @@ public class FunUtils {
         return students;
     }
 
-    public static <P, R> Map<R, List<P>> group(List<P> list, Function<P, R> function) {
-        Map<R, List<P>> result = new HashMap<R, List<P>>();
+    public static <P, R> Map<R, List<P>> group(List<P> list, final Function<P, R> function) {
+        final Map<R, List<P>> result = new HashMap<R, List<P>>();
 
-        for (P item : list) {
-            R field = function.exec(item);
+        forEach(list, new Function<P, Void>() {
+            public Void exec(P s) {
+                R field = function.exec(s);
 
-            if (result.get(field) == null) {
-               result.put(field, new ArrayList<P>());
+                if (result.get(field) == null) {
+                    result.put(field, new ArrayList<P>());
+                }
+
+                result.get(field).add(s);
+                return (null);
             }
-
-            result.get(field).add(item);
-        }
+        });
 
         return result;
     }
