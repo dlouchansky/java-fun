@@ -123,6 +123,57 @@ public class FunUtilsTest {
 
         assertEquals(filtered.size(), 2);
     }
+    @Test
+    public void testRecursiveFilterEmpty() {
+        List<Student> filtered = FunUtils.recursiveFilter(students, new Function<Student, Boolean>() {
+            public Boolean exec(Student a) {
+                return a.getName().equals("One") || a.getName().equals("Three");
+            }
+        });
+
+        assertEquals(filtered.size(), 0);
+    }
+
+    @Test
+    public void testRecursiveFilterOneElemIfMatches() {
+        students.add(new Student(3, "Three"));
+
+        List<Student> filtered = FunUtils.recursiveFilter(students, new Function<Student, Boolean>() {
+            public Boolean exec(Student a) {
+                return a.getName().equals("One") || a.getName().equals("Three");
+            }
+        });
+
+        assertEquals(filtered.size(), 1);
+    }
+
+    @Test
+    public void testRecursiveFilterOneElemIfNotMatches() {
+        students.add(new Student(3, "Three"));
+
+        List<Student> filtered = FunUtils.recursiveFilter(students, new Function<Student, Boolean>() {
+            public Boolean exec(Student a) {
+                return a.getName().equals("One");
+            }
+        });
+
+        assertEquals(filtered.size(), 0);
+    }
+
+    @Test
+    public void testRecursiveFilterThreeElementsWhereTwoMatch() {
+        students.add(new Student(3, "Three"));
+        students.add(new Student(2, "Two"));
+        students.add(new Student(1, "One"));
+
+        List<Student> filtered = FunUtils.recursiveFilter(students, new Function<Student, Boolean>() {
+            public Boolean exec(Student a) {
+                return a.getName().equals("One") || a.getName().equals("Three");
+            }
+        });
+
+        assertEquals(filtered.size(), 2);
+    }
 
     @Test
     public void testMapGetIdList() {
@@ -151,6 +202,32 @@ public class FunUtilsTest {
         assertEquals(ids.size(), 0);
     }
 
+    @Test
+    public void testRecursiveMapGetIdList() {
+        students.add(new Student(2, "One"));
+        students.add(new Student(1, "Two"));
+        students.add(new Student(1, "One"));
+
+        List<Integer> ids = FunUtils.recursiveMap(students, new Function<Student, Integer>() {
+            public Integer exec(Student a) {
+                return a.getId();
+            }
+        });
+
+        assertEquals(ids.size(), 3);
+        assertEquals(ids.get(0), new Integer(2));
+    }
+
+    @Test
+    public void testRecursiveMapGetIdListFromEmpty() {
+        List<Integer> ids = FunUtils.recursiveMap(students, new Function<Student, Integer>() {
+            public Integer exec(Student a) {
+                return a.getId();
+            }
+        });
+
+        assertEquals(ids.size(), 0);
+    }
     @Test
     public void testGroupById() {
         students.add(new Student(2, "One"));

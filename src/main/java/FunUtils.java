@@ -6,16 +6,33 @@ import java.util.Map;
 public class FunUtils {
 
     public static <P, R> List<R> map(List<P> list, final Function<P, R> function) {
-        final List<R> ids = new ArrayList<R>();
+        final List<R> processed = new ArrayList<R>();
 
         forEach(list, new Function<P, Void>() {
            public Void exec(P s) {
-                ids.add(function.exec(s));
+                processed.add(function.exec(s));
                 return (null);
            }
         });
 
-        return ids;
+        return processed;
+    }
+
+    public static <P, R> List<R> recursiveMap(List<P> list, Function<P, R> function) {
+        if (list.size() == 0) {
+            return new ArrayList<R>();
+        }
+
+        if (list.size() == 1) {
+            List<R> processed = new ArrayList<R>();
+            processed.add(function.exec(list.get(0)));
+            return processed;
+        }
+
+        R obj = function.exec(list.remove(0));
+        List<R> processed = recursiveMap(list, function);
+        processed.add(0, obj);
+        return processed;
     }
 
     public static <P> List<P> filter(List<P> list, final Function<P, Boolean> comparator) {
@@ -31,6 +48,27 @@ public class FunUtils {
         });
 
         return result;
+    }
+
+    public static <P> List<P> recursiveFilter(List<P> list, Function<P, Boolean> comparator) {
+        if (list.size() == 0) {
+            return new ArrayList<P>();
+        }
+
+        if (list.size() == 1) {
+            List<P> processed = new ArrayList<P>();
+            if(comparator.exec(list.get(0))){
+                processed.add(list.get(0));
+            }
+            return processed;
+        }
+
+        P obj = list.remove(0);
+        List<P> processed = recursiveFilter(list, comparator);
+        if (comparator.exec(obj))
+            processed.add(0, obj);
+
+        return processed;
     }
 
     // bubble sort
