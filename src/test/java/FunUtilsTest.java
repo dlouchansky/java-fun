@@ -254,4 +254,59 @@ public class FunUtilsTest {
         assertEquals(result.size(), 0);
     }
 
+    @Test
+    public void testForEachIfEmpty() {
+        final ArrayList<Integer> testList = new ArrayList<Integer>();
+        FunUtils.forEach(students, new Function<Student, Void>() {
+            public Void exec(Student a) {
+                testList.add(1);
+                return (null);
+            }
+        });
+        assertEquals(testList.size(), 0);
+    }
+
+    @Test
+    public void testForEach() {
+        students.add(new Student(2, "One"));
+        students.add(new Student(1, "Two"));
+        students.add(new Student(1, "One"));
+
+        final ArrayList<Integer> testList = new ArrayList<Integer>();
+        FunUtils.forEach(students, new Function<Student, Void>() {
+            public Void exec(Student a) {
+                testList.add(1);
+                return (null);
+            }
+        });
+        assertEquals(testList.size(), 3);
+    }
+
+    @Test
+    public void testRecursiveForEachIfEmpty() {
+        final ArrayList<Integer> testList = new ArrayList<Integer>();
+        FunUtils.recursiveForEach(students, new Function<Student, Void>() {
+            public Void exec(Student a) {
+                testList.add(1);
+                return (null);
+            }
+        });
+        assertEquals(testList.size(), 0);
+    }
+
+    @Test
+    public void testRecursiveForEach() {
+        students.add(new Student(2, "One"));
+        students.add(new Student(1, "Two"));
+        students.add(new Student(1, "One"));
+
+        final ArrayList<Integer> testList = new ArrayList<Integer>();
+        FunUtils.recursiveForEach(students, new Function<Student, Void>() {
+            public Void exec(Student a) {
+                testList.add(1);
+                return (null);
+            }
+        });
+        assertEquals(testList.size(), 3);
+    }
 }

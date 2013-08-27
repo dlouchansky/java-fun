@@ -118,6 +118,14 @@ public class FunUtils {
         }
     }
 
+    public static <P> void recursiveForEach(List<P> list, Function<P, Void> function) {
+        if (list.size() != 0) {
+            P obj = list.remove(0);
+            function.exec(obj);
+            recursiveForEach(list, function);
+        }
+    }
+
 }
 
 
