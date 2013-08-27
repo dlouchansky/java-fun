@@ -228,6 +228,7 @@ public class FunUtilsTest {
 
         assertEquals(ids.size(), 0);
     }
+
     @Test
     public void testGroupById() {
         students.add(new Student(2, "One"));
@@ -246,6 +247,32 @@ public class FunUtilsTest {
     @Test
     public void testGroupByIdIfEmpty() {
         Map<String, List<Student>> result = FunUtils.group(students, new Function<Student, String>() {
+            public String exec(Student a) {
+                return a.getName();
+            }
+        });
+
+        assertEquals(result.size(), 0);
+    }
+
+    @Test
+    public void testRecursiveGroupById() {
+        students.add(new Student(2, "One"));
+        students.add(new Student(1, "Two"));
+        students.add(new Student(1, "One"));
+
+        Map<String, List<Student>> result = FunUtils.recursiveGroup(students, new Function<Student, String>() {
+            public String exec(Student a) {
+                return a.getName();
+            }
+        });
+        assertEquals(result.get("One").size(), 2);
+        assertEquals(result.size(), 2);
+    }
+
+    @Test
+    public void testRecursiveGroupByIdIfEmpty() {
+        Map<String, List<Student>> result = FunUtils.recursiveGroup(students, new Function<Student, String>() {
             public String exec(Student a) {
                 return a.getName();
             }

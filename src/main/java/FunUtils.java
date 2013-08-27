@@ -112,6 +112,31 @@ public class FunUtils {
         return result;
     }
 
+    public static <P, R> Map<R, List<P>> recursiveGroup(List<P> list, final Function<P, R> function) {
+        if (list.size() == 0) {
+            return new HashMap<R, List<P>>();
+        }
+
+        if (list.size() == 1) {
+            Map<R, List<P>> result = new HashMap<R, List<P>>();
+            P obj = list.get(0);
+            R field = function.exec(obj);
+            result.put(field, new ArrayList<P>());
+            result.get(field).add(obj);
+            return result;
+        }
+
+        P obj = list.remove(0);
+        R field = function.exec(obj);
+        Map<R, List<P>> result = recursiveGroup(list, function);
+
+        if (result.get(field) == null) {
+            result.put(field, new ArrayList<P>());
+        }
+        result.get(field).add(obj);
+        return result;
+    }
+
     public static <P> void forEach(List<P> list, Function<P, Void> function) {
         for (P item : list) {
             function.exec(item);
