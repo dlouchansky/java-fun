@@ -14,4 +14,8 @@ public class Student {
     public Integer getId() {
         return id;
     }
+
+    public String toString() {
+        return "Id: " + id + ", name: " + name;
+    }
 }
