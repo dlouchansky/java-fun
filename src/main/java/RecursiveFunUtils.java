@@ -34,26 +34,26 @@ public class RecursiveFunUtils {
         return filter(list, comparator, result);
     }
 
-    //todo merge sort
-    public static <P> List<P> sort(List<P> students, Function2<P, Boolean> comparator) {
-        int j;
-        boolean flag = true;
-        P temp;
-
-        while (flag)
-        {
-            flag = false;
-            for(j = 0; j < students.size() - 1; j++)
-            {
-                if (comparator.exec(students.get(j), students.get(j + 1))) {
-                    temp = students.get(j);
-                    students.set(j, students.get(j + 1));
-                    students.set(j + 1, temp);
-                    flag = true;
-                }
-            }
+    public static <P> List<P> sort(List<P> persons, Function2<P, Boolean> comparator) {
+        List<P> result = new ArrayList<P>();
+        if (persons.size() == 1) {
+            result.add(persons.get(0));
+            return result;
+        } else if (persons.size() == 0) {
+            return result;
         }
-        return students;
+
+        List<P> left = sort(persons.subList(0, persons.size() / 2), comparator);
+        List<P> right = sort(persons.subList(persons.size() / 2, persons.size()), comparator);
+
+        result = merge(left, right);
+        return result;
+    }
+
+    public static <P> List<P> merge(List<P> left, List<P> right) {
+        ArrayList<P> result = new ArrayList<P>();
+        // todo
+        return result;
     }
 
     public static <P, R> Map<R, List<P>> group(List<P> list, final Function<P, R> function) {
