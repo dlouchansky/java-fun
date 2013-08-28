@@ -22,7 +22,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(result.size(), 0);
+        assertEquals(0, result.size());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(result.size(), 1);
+        assertEquals(1, result.size());
     }
 
     @Test
@@ -50,9 +50,9 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(result.size(), 3);
-        assertEquals(result.get(0).getId(), new Integer(1));
-        assertEquals(result.get(2).getId(), new Integer(2));
+        assertEquals(3, result.size());
+        assertEquals(new Integer(1), result.get(0).getId());
+        assertEquals(new Integer(2), result.get(2).getId());
     }
 
     @Test
@@ -67,8 +67,8 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(result.size(), 3);
-        assertEquals(result.get(2).getId(), new Integer(1));
+        assertEquals(3, result.size());
+        assertEquals(new Integer(1), result.get(2).getId());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(filtered.size(), 0);
+        assertEquals(0, filtered.size());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(filtered.size(), 1);
+        assertEquals(1, filtered.size());
     }
 
     @Test
@@ -105,7 +105,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(filtered.size(), 0);
+        assertEquals(0, filtered.size());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(filtered.size(), 2);
+        assertEquals(2, filtered.size());
     }
 
     @Test
@@ -135,8 +135,8 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(ids.size(), 3);
-        assertEquals(ids.get(0), new Integer(2));
+        assertEquals(3, ids.size());
+        assertEquals(new Integer(2), ids.get(0));
     }
 
     @Test
@@ -147,7 +147,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(ids.size(), 0);
+        assertEquals(0, ids.size());
     }
 
     @Test
@@ -161,8 +161,8 @@ public class RecursiveFunUtilsTest {
                 return a.getName();
             }
         });
-        assertEquals(result.get("One").size(), 2);
-        assertEquals(result.size(), 2);
+        assertEquals(2, result.get("One").size());
+        assertEquals(2, result.size());
     }
 
     @Test
@@ -173,7 +173,7 @@ public class RecursiveFunUtilsTest {
             }
         });
 
-        assertEquals(result.size(), 0);
+        assertEquals(0, result.size());
     }
 
     @Test
@@ -185,7 +185,7 @@ public class RecursiveFunUtilsTest {
                 return (null);
             }
         });
-        assertEquals(testList.size(), 0);
+        assertEquals(0, testList.size());
     }
 
     @Test
@@ -201,6 +201,6 @@ public class RecursiveFunUtilsTest {
                 return (null);
             }
         });
-        assertEquals(testList.size(), 3);
+        assertEquals(3, testList.size());
     }
 }
