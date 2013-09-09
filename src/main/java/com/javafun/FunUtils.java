@@ -1,3 +1,8 @@
+package com.javafun;
+
+import com.javafun.misc.Function;
+import com.javafun.misc.Function2;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +14,10 @@ public class FunUtils {
         final List<R> processed = new ArrayList<R>();
 
         forEach(list, new Function<P, Void>() {
-           public Void exec(P s) {
+            public Void exec(P s) {
                 processed.add(function.exec(s));
                 return (null);
-           }
+            }
         });
 
         return processed;
@@ -23,7 +28,7 @@ public class FunUtils {
 
         forEach(list, new Function<P, Void>() {
             public Void exec(P s) {
-                if(comparator.exec(s)){
+                if (comparator.exec(s)) {
                     result.add(s);
                 }
                 return (null);
@@ -39,11 +44,9 @@ public class FunUtils {
         boolean flag = true;
         P temp;
 
-        while (flag)
-        {
+        while (flag) {
             flag = false;
-            for(j = 0; j < students.size() - 1; j++)
-            {
+            for (j = 0; j < students.size() - 1; j++) {
                 if (comparator.exec(students.get(j), students.get(j + 1))) {
                     temp = students.get(j);
                     students.set(j, students.get(j + 1));

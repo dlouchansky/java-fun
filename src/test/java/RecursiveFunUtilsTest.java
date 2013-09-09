@@ -1,3 +1,7 @@
+import com.javafun.RecursiveFunUtils;
+import com.javafun.misc.Function;
+import com.javafun.misc.Function2;
+import com.javafun.misc.Student;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class RecursiveFunUtilsTest {
     ArrayList<Student> students;
+
     @Before
     public void setUp() {
         students = new ArrayList<Student>();

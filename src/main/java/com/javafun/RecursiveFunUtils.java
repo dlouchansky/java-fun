@@ -1,3 +1,8 @@
+package com.javafun;
+
+import com.javafun.misc.Function;
+import com.javafun.misc.Function2;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,24 +66,24 @@ public class RecursiveFunUtils {
     public static <P> List<P> merge(List<P> left, List<P> right, Function2<P, Boolean> comparator) {
         ArrayList<P> result = new ArrayList<P>();
 
-        while(!left.isEmpty() && !right.isEmpty()) {
+        while (!left.isEmpty() && !right.isEmpty()) {
             P fromLeft = left.get(0);
             P fromRight = right.get(0);
 
             if (!comparator.exec(fromLeft, fromRight)) {
-               result.add(left.remove(0));
+                result.add(left.remove(0));
             } else {
-               result.add(right.remove(0));
+                result.add(right.remove(0));
             }
 
         }
 
         if (!left.isEmpty())
-            while(!left.isEmpty())
+            while (!left.isEmpty())
                 result.add(left.remove(0));
 
         if (!right.isEmpty())
-            while(!right.isEmpty())
+            while (!right.isEmpty())
                 result.add(right.remove(0));
 
         return result;

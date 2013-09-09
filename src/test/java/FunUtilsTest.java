@@ -1,3 +1,7 @@
+import com.javafun.FunUtils;
+import com.javafun.misc.Function;
+import com.javafun.misc.Function2;
+import com.javafun.misc.Student;
 import org.junit.Before;
 import org.junit.Test;
 
