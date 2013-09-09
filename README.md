@@ -1,1 +1,1 @@
-Map, filter, sort, group by, foreach function iterative implementation in Java and map, filter, for each, group by function recursive implementation.
+Map, filter, sort, group by, foreach function iterative and recursive implementation in Java.
